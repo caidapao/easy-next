@@ -5,6 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 /**
+ * 流水号
  * @author caixuan
  * @date 2022/11/19 07:46
  **/
@@ -16,8 +17,6 @@ public class SerialNumber {
     private String code;
 
     private String name;
-
-    private String appId;
 
     private String enabled;
 

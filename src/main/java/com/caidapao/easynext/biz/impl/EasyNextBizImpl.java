@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
+ * 流水号服务实现类
  * @author caixuan
  * @date 2022/11/18 23:26
  **/
@@ -25,7 +26,7 @@ public class EasyNextBizImpl implements EasyNextBiz {
     public String getNextSerialNumber(String code) {
         //通过流水号拿到所有流水号规则,按照排序从左到右拼接而成.
 
-        String getSerialNumberByRule();
+//        String getSerialNumberByRule();
         return null;
 //        return String.valueOf(redisTemplate.opsForValue().increment(code));
     }

@@ -11,6 +11,8 @@ import lombok.Data;
 @Data
 public class SerialNumberPart {
 
+    private String id;
+
     private String serialNumberId;
 
     /**

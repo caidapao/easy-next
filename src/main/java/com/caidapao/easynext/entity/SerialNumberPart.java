@@ -2,6 +2,9 @@ package com.caidapao.easynext.entity;
 
 import lombok.Data;
 
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * 流水号成分
  *
@@ -9,8 +12,10 @@ import lombok.Data;
  * @date 2022/11/20 00:21
  **/
 @Data
+@Table(name = "en_serial_number_part")
 public class SerialNumberPart {
 
+    @Id
     private String id;
 
     private String serialNumberId;

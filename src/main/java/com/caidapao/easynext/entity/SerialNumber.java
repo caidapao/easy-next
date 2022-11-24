@@ -2,6 +2,8 @@ package com.caidapao.easynext.entity;
 
 import lombok.Data;
 
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
@@ -10,8 +12,10 @@ import java.util.Date;
  * @date 2022/11/19 07:46
  **/
 @Data
+@Table(name = "en_serial_number")
 public class SerialNumber {
 
+    @Id
     private String id;
 
     private String code;

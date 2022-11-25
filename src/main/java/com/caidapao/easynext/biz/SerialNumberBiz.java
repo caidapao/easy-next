@@ -1,6 +1,10 @@
 package com.caidapao.easynext.biz;
 
 
+import com.caidapao.easynext.dto.EasyNextReqDTO;
+
+import java.util.List;
+
 /**
  * 流水号服务
  * @author caixuan
@@ -10,8 +14,8 @@ public interface SerialNumberBiz {
 
     /**
      * 通过流水号编码获取流水号
-     * @param code 流水号编码
+     * @param easyNextReqDto 请求参数
      * @return
      */
-    String getSerialNumberByCode(String code);
+    String getSerialNumberByCode(EasyNextReqDTO easyNextReqDto);
 }

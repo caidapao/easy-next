@@ -2,6 +2,7 @@ package com.caidapao.easynext.biz.impl;
 
 import com.caidapao.easynext.biz.EasyNextBiz;
 import com.caidapao.easynext.biz.SerialNumberBiz;
+import com.caidapao.easynext.dto.EasyNextReqDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -12,6 +13,7 @@ import java.util.List;
 
 /**
  * EasyNext实现类
+ *
  * @author caixuan
  * @date 2022/11/18 23:26
  **/
@@ -25,20 +27,17 @@ public class EasyNextBizImpl implements EasyNextBiz {
     @Autowired
     private SerialNumberBiz serialNumberBiz;
 
-
-
     @Override
-    public String getNextSerialNumber(String code) {
-        if (!StringUtils.hasText(code)) {
-            //TODO:caidapao 细化异常
+    public String getNextSerialNumber(EasyNextReqDTO easyNextReqDto) {
+        if (!StringUtils.hasText(easyNextReqDto.getCode())) {
             throw new RuntimeException("流水号编码不能为空");
         }
-        return serialNumberBiz.getSerialNumberByCode(code);
+        return serialNumberBiz.getSerialNumberByCode(easyNextReqDto);
     }
 
     @Override
     public List<String> getNextBatchSerialNumber(String code, Long size) {
-        String nextBatchNumber = String.valueOf(redisTemplate.opsForValue().increment(code, size));
+//        String nextBatchNumber = String.valueOf(redisTemplate.opsForValue().increment(code, size));
         return null;
     }
 

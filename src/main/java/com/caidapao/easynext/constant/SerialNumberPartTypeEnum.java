@@ -12,29 +12,43 @@ public enum SerialNumberPartTypeEnum {
      * 2022-11-24 23:35:41
      * 20221124233541
      */
-    DATE("日期", "DATE"),
+    DATE("日期", "DATE", 1),
     /**
      * 随机数,纯数字符串
      */
-    RANDOM("随机数", "RANDOM"),
+    RANDOM("随机数", "RANDOM", 2),
     /**
      * 通过接口传参
      */
-    PARAM("传参", "PARAM"),
+    PARAM("传参", "PARAM", 3),
     /**
      * 流水号
      */
-    SERIAL("流水号", "SERIAL"),
+    SERIAL("流水号", "SERIAL", 4),
     /**
      * 自定义字符串
      */
-    DIY("自定义字符串", "DIY");
+    DIY("自定义字符串", "DIY", 5);
 
-    private String name;
-    private String code;
+    private final String desc;
+    private final String code;
+    private final Integer index;
 
-    SerialNumberPartTypeEnum(String name, String code) {
-        this.name = name;
+    SerialNumberPartTypeEnum(String desc, String code, Integer index) {
+        this.desc = desc;
         this.code = code;
+        this.index = index;
+    }
+
+    public String getDesc() {
+        return this.desc;
+    }
+
+    public String getCode() {
+        return this.code;
+    }
+
+    public Integer getIndex() {
+        return this.index;
     }
 }

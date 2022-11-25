@@ -3,6 +3,8 @@ package com.caidapao.easynext.biz.impl;
 import com.caidapao.easynext.biz.SerialNumberBiz;
 import com.caidapao.easynext.biz.SerialNumberPartBiz;
 import com.caidapao.easynext.constant.Constants;
+import com.caidapao.easynext.constant.SerialNumberPartTypeEnum;
+import com.caidapao.easynext.dto.EasyNextReqDTO;
 import com.caidapao.easynext.entity.SerialNumber;
 import com.caidapao.easynext.entity.SerialNumberPart;
 import com.caidapao.easynext.repository.cache.LocalCache;
@@ -29,7 +31,8 @@ public class SerialNumberBizImpl implements SerialNumberBiz {
     private SerialNumberPartBiz serialNumberPartBiz;
 
     @Override
-    public String getSerialNumberByCode(String code) {
+    public String getSerialNumberByCode(EasyNextReqDTO easyNextReqDto) {
+        String code = easyNextReqDto.getCode();
         //校验流水号
         this.validateCode(code);
         //通过流水号编码从缓存中拿到所有流水号成分,按照排序从左到右拼接而成.
@@ -37,7 +40,7 @@ public class SerialNumberBizImpl implements SerialNumberBiz {
         parts = parts.stream().sorted(Comparator.comparing(SerialNumberPart::getSort)).collect(Collectors.toList());
         StringBuilder sb = new StringBuilder();
         for (SerialNumberPart part : parts) {
-            sb.append(serialNumberPartBiz.getPartResult(part));
+            sb.append(serialNumberPartBiz.getPartResult(part, easyNextReqDto));
         }
         return sb.toString();
     }

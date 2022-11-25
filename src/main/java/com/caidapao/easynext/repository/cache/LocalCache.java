@@ -40,7 +40,7 @@ public class LocalCache {
         initFinished = true;
     }
 
-    public static boolean initFinish() {
+    public static boolean isInitFinish() {
         return initFinished;
     }
 

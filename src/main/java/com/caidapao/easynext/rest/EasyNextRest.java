@@ -1,11 +1,11 @@
 package com.caidapao.easynext.rest;
 
 import com.caidapao.easynext.biz.EasyNextBiz;
+import com.caidapao.easynext.dto.EasyNextReqDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 流水号服务控制器
@@ -20,13 +20,9 @@ public class EasyNextRest {
     @Autowired
     private EasyNextBiz easyNextBiz;
 
-    @GetMapping("/{code}")
-    public Object nextSerialNumber(@PathVariable String code) {
-        return easyNextBiz.getNextSerialNumber(code);
+    @PostMapping
+    public Object nextSerialNumber(@RequestBody EasyNextReqDTO easyNextReqDto) {
+        return easyNextBiz.getNextSerialNumber(easyNextReqDto);
     }
 
-    @GetMapping("/batch/{code}/{step}")
-    public Object batchNextSerialNumber(@PathVariable String code, @PathVariable Long step) {
-        return easyNextBiz.getNextBatchSerialNumber(code, step);
-    }
 }

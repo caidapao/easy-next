@@ -60,6 +60,7 @@ public class SerialNumberPartBizImpl implements SerialNumberPartBiz {
     }
 
     private String parseParamTypePart(SerialNumberPart part, List<String> params) {
+
         return null;
     }
 

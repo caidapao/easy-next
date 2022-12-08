@@ -3,11 +3,10 @@ package com.caidapao.easynext.biz.impl;
 import com.caidapao.easynext.biz.SerialNumberBiz;
 import com.caidapao.easynext.biz.SerialNumberPartBiz;
 import com.caidapao.easynext.constant.Constants;
-import com.caidapao.easynext.constant.SerialNumberPartTypeEnum;
 import com.caidapao.easynext.dto.EasyNextReqDTO;
 import com.caidapao.easynext.entity.SerialNumber;
 import com.caidapao.easynext.entity.SerialNumberPart;
-import com.caidapao.easynext.repository.cache.LocalCache;
+import com.caidapao.easynext.repository.cache.LocalSerialCache;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +35,7 @@ public class SerialNumberBizImpl implements SerialNumberBiz {
         //校验流水号
         this.validateCode(code);
         //通过流水号编码从缓存中拿到所有流水号成分,按照排序从左到右拼接而成.
-        List<SerialNumberPart> parts = LocalCache.getSerialNumberParts(code);
+        List<SerialNumberPart> parts = LocalSerialCache.getSerialNumberParts(code);
         parts = parts.stream().sorted(Comparator.comparing(SerialNumberPart::getSort)).collect(Collectors.toList());
         StringBuilder sb = new StringBuilder();
         for (SerialNumberPart part : parts) {
@@ -49,7 +48,7 @@ public class SerialNumberBizImpl implements SerialNumberBiz {
         if (!StringUtils.hasText(code)) {
             throw new RuntimeException("流水号编码不能为空");
         }
-        SerialNumber serialNumber = LocalCache.getSerialNumber(code);
+        SerialNumber serialNumber = LocalSerialCache.getSerialNumber(code);
         if (serialNumber == null) {
             throw new RuntimeException("流水号编码" + code + "不存在");
         }

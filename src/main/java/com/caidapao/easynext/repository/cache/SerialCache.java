@@ -17,7 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
  **/
 @Component
 @Slf4j
-public class LocalSerialCache {
+public class SerialCache {
 
     /**
      * 流水号缓存完成标识
